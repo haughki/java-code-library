@@ -18,7 +18,7 @@ Byte.parseByte("-0000001") is -1, whereas the actual two's complement version wo
 be 1111 1111.
  */
 public class Bytes {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
 
         System.out.println("Useful bitmasks:");
         int[] a = {1, 2, 4, 8, 16, 32, 64, 128, 127, 191, 239, 247, 251, 253, 254};
