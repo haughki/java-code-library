@@ -71,31 +71,6 @@ public class Bytes {
         for (byte n = -1; n > -10; n--) {
             printByte(n, "");
         }
-
-/*
-        byte b = -3;
-        print8Bits(Byte.parseByte("-1111111", 2));
-        System.out.println();
-        print8Bits(128);
-*/
-
-
-        //System.out.println(((byte) 253));
-
-
-/*
-        print8Bits(7);
-        print8Bits(-7);
-        print8Bits(28);
-        print8Bits(-28);
-
-        for (int n = 1; n < 10; n++) {
-            print8Bits(n);
-        }
-        for (int n = -1; n > -10; n--) {
-            print8Bits(n);
-        }
-*/
     }
 
     private static void print8Bits(int i) {
