@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Statics {
 
+    // How to use a static initializer.
     // May not want to initialize the following inline.  Best,
     // for many reasons, not to init in ctor (it's static, not instance-specific).
     public final static Map<Double, String> labels = new HashMap<>();
