@@ -13,7 +13,7 @@ public class Drop {
         while (!empty) {
             try {
                 System.out.println("put waiting...");
-                wait(); // waits until notified, AND until it can re-gain the sync lock (take() must exit first)
+                wait(); // sleeps thread, releases sync lock. Waits until notified AND until it can re-gain the sync lock (take() must exit first)
                 System.out.println("put FREE!");
             } catch (InterruptedException e) {
                 System.out.println("Drop.put Interrupted! " + e.toString());

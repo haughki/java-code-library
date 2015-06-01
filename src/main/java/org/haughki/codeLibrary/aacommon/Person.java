@@ -4,6 +4,14 @@ import java.time.LocalDate;
 
 public class Person {
 
+    public Person() {
+        this.name = "John Doe";
+        this.birthday = LocalDate.MAX;
+        this.age = 44;
+        this.gender = Sex.FEMALE;
+        this.emailAddress = "johndoe@anywhere.com";
+    }
+
     public Person(String name, byte age, Sex gender, String emailAddress) {
         this.name = name;
         this.birthday = LocalDate.MIN;
@@ -37,6 +45,8 @@ public class Person {
     byte age;
     Sex gender;
     String emailAddress;
+
+    public String comment = "Anyone can comment.";
 
     public int getAge() {
         return this.age;
