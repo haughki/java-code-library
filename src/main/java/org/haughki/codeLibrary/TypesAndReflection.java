@@ -6,12 +6,13 @@ import java.util.Stack;
 public class TypesAndReflection {
     public static void main(String[] args) {
         Class c = TypesAndReflection.class;
-        System.out.println(c);
+        System.out.println("TypesAndReflection.class: " + c);
         Class ic = Collection.class;
-        System.out.println(ic);
+        System.out.println("Collection.class: " + ic);
         Class oc = (new TypesAndReflection()).getClass();
-        System.out.println(oc);
+        System.out.println("(new TypesAndReflection()).getClass(): " + oc);
 
+        System.out.println();
 
         Stack s = new Stack();
         s.push("pokey");
@@ -22,6 +23,6 @@ public class TypesAndReflection {
 
     private static void whoAmI(Collection s) {
         Class c = s.getClass();
-        System.out.println(c);
+        System.out.println("Derived type: " + c);
     }
 }
