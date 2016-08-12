@@ -20,5 +20,44 @@ public class MaxWithComparator {
             }
         });
         System.out.println(max.get());
+
+        // Make the comparator more general -- it now compares types of Object
+        Optional<String> max1 = s.stream().max(new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1.equals(o2))
+                    return 0;
+                if (o1.toString().equals("c"))
+                    return 1;
+                return -1;
+            }
+        });
+        System.out.println(max1.get());
+
+        // Object IS a <? super String>
+        Comparator<? super String> comparator = new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1.equals(o2))
+                    return 0;
+                if (o1.toString().equals("c"))
+                    return 1;
+                return -1;
+            }
+        };
+        System.out.println(s.stream().max(comparator).get());
+        
+//        Optional<String> max2 = s.stream().max(new Comparator<?>() {  -- ERROR: can't instantiate a wildcard type
+//            @Override
+//            public int compare(Object o1, Object o2) {
+//                if (o1.equals(o2))
+//                    return 0;
+//                if (o1.toString().equals("c"))
+//                    return 1;
+//                return -1;
+//            }
+//        });
+//        System.out.println(max2.get());
+
     }
 }

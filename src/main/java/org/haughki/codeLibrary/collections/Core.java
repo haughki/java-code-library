@@ -21,7 +21,7 @@ public class Core {
         l.stream().forEach(System.out::println);
     }
 
-    static <T> void filter(Collection<T> coll, final T comparator) {
+    private static <T> void filter(Collection<T> coll, final T comparator) {
         // removing items from a collection
 /*
         for (Iterator<T> it = coll.iterator(); it.hasNext(); )

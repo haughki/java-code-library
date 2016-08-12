@@ -21,7 +21,7 @@ public class Bytes {
     public static void main(String[] args) {
 
         System.out.println("Useful bitmasks:");
-        int[] a = {1, 2, 4, 8, 16, 32, 64, 128, 127, 191, 239, 247, 251, 253, 254};
+        int[] a = {1, 2, 4, 8, 16, 32, 64, 128, 127, 191, 223, 239, 247, 251, 253, 254};
         for (int i : a) {
             print8Bits(i);
         }
@@ -82,6 +82,8 @@ public class Bytes {
         String hex = String.format("0x%2s", Integer.toHexString(i)).replace(' ', '0');
         String bin = String.format("%8s", Integer.toBinaryString(i)).replace(' ', '0');
 
+        // negative numbers will have 3 "extra" bytes of 1 because of the 32 bit int.  We just need the 8 bits
+        // so strip off the meaningless lefthand 1 bits if they exist.
         if (bin.length() > 8) {
             bin = bin.substring(bin.length() - 8);
             hex = "0x" + hex.substring(hex.length() - 2);
