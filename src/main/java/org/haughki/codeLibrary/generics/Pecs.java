@@ -22,6 +22,7 @@ public class Pecs {
                 new Whale(),
                 new HumpbackWhale()
         ));
+        // whales.add(new AquaticMammal()); -- ERROR: AquaticMammal is a parent of Whale -- breaks polymorphism
         producer(whales);
 
 
@@ -58,15 +59,13 @@ public class Pecs {
             animal.Live();
         }
     }
-
-    // Can take a Collection of Whale or any super-type of Whale.  Can add (consume) Whale or any
-    // sub-type of Whale to the collection. Wants to make sure it can _add_ a certain type, and ensure the caller
-    // isn't trying to use an unsupported interface; i.e., an interface not supported by the declared type.
-    // Restricts to super-types to protect the user: if the user were allowed to pass a coll parameterized to
-    // a sub-type of Whale, he/she might think he/she could use any public member from the sub-type's
-    // interface, even those un-supported by Whale.
+    
+    // This method can take a Collection typed to Whale or any parent (super) of Whale. Because the possible type of 
+    // the Collection is variable, the method body has to assume that it might (essentially, will) get a 
+    // Collection of Whales. A Collection of Whales can only add Whales and subtypes of Whale (polymorphism), and 
+    // so, that’s the only thing you can add to the “existers” parameter.
     public static void consumer(Collection<? super Whale> existers) {
-        // ERROR:  existers.add(new AquaticMammal());  -- AquaticMammal not a Whale or sub of Whale
+        // existers.add(new AquaticMammal()); //  -- AquaticMammal not a Whale or sub of Whale
         existers.add(new Whale());
         existers.add(new HumpbackWhale());
     }
