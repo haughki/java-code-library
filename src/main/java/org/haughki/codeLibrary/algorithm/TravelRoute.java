@@ -21,6 +21,7 @@ class RealStep {
     RealStep(Step _step, String _start){
         step = _step;
         start = _start;
+        setStart(start);
     }
     Step step;
     String start;
@@ -54,28 +55,41 @@ public class TravelRoute {
         steps.add(new Step("Montgomery", "Tuscaloosa", 134));
     }
 
-    private static void findRoutes(String start, String end, Route partialRoute, List<Step> steps){
+    private static void findRoutes(String start, String finalDestination, Route partialRoute, List<Step> steps){
         for(Step step: steps){
             // if you find a start in either city
-            // if the other city equals the end city
-            // we found a terminus: add real step to partial route, create new route and add to routes
-            // return
+            if(start.equals(step.firstCity)){
+                if (isFinalDestination(new RealStep(step, step.firstCity), finalDestination, partialRoute))
+                    return;
+            } else if (start.equals(step.secondCity)){
+                if (isFinalDestination(new RealStep(step, step.secondCity), finalDestination, partialRoute))
+                    return;
+            }
 
-            // create real step and set start on it
-            // add real step to partial route -- recalculate total
             // copy steps, removing the current step -- sub method
             // recurse -- end of this step becomes the new start; pass truncated steps
-
-            // we completed the loop and haven't added a new start to the partial route.
-            // it's a dead-end: do nothing, let the function return
         }
+        // we completed the loop and haven't added a new start to the partial route.
+        // it's a dead-end: do nothing, let the function return
     }
-    
+
+    private static boolean isFinalDestination(RealStep realStep, String finalDestination, Route partialRoute){
+        partialRoute.realSteps.add(realStep);
+        partialRoute.totalDistance += realStep.step.distance;
+        // if the other city equals the final destination
+        if (realStep.end.equals(finalDestination)){
+            // we found a terminus: add real step to partial route, create new route and add to routes
+            routes.add(partialRoute);
+            return true;
+        }
+        return false;
+    }
+
+
+    private static List<Route> routes = new ArrayList<>();
     public static void main(String[] args) {
         List<Step> steps = new ArrayList<>();
         buildSteps(steps);
-        List<Route> routes = new ArrayList<>();
-        
-        
+        findRoutes("", "", new Route(), steps);
     }
 }
