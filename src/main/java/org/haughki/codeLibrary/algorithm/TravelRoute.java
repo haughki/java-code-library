@@ -37,8 +37,27 @@ class RealStep {
 }
 
 class Route {
+    Route(){}
+    Route(Route route){
+        realSteps = new ArrayList<>(route.realSteps);
+        totalDistance = route.totalDistance;
+    }
     List<RealStep> realSteps = new ArrayList<>();
     int totalDistance = 0;
+    void addRealStep(RealStep realStep) {
+        realSteps.add(realStep);
+        totalDistance += realStep.step.distance;
+    }
+    @Override
+    public String toString(){
+        StringBuilder routeAndTotal = new StringBuilder();
+        for (RealStep step: realSteps) {
+            routeAndTotal.append(step.start).append("-").append(step.end).append(" > ");
+        }
+        
+        routeAndTotal.append(totalDistance);
+        return routeAndTotal.toString();
+    }
 }
 
 public class TravelRoute {
@@ -55,31 +74,53 @@ public class TravelRoute {
         steps.add(new Step("Montgomery", "Tuscaloosa", 134));
     }
 
-    private static void findRoutes(String start, String finalDestination, Route partialRoute, List<Step> steps){
+    private static void findRoutes(String start, Route partialRoute, List<Step> steps){
         for(Step step: steps){
-            // if you find a start in either city
+            RealStep realStep = null;
+            boolean foundFinal = false;
             if(start.equals(step.firstCity)){
-                if (isFinalDestination(new RealStep(step, step.firstCity), finalDestination, partialRoute))
-                    return;
+                realStep = new RealStep(step, step.firstCity);
+                if (isFinalDestination(realStep, partialRoute))
+                    foundFinal = true;
             } else if (start.equals(step.secondCity)){
-                if (isFinalDestination(new RealStep(step, step.secondCity), finalDestination, partialRoute))
-                    return;
+                realStep = new RealStep(step, step.secondCity);
+                if (isFinalDestination(realStep, partialRoute))
+                    foundFinal = true;
             }
-
-            // copy steps, removing the current step -- sub method
-            // recurse -- end of this step becomes the new start; pass truncated steps
+            if (realStep != null && !foundFinal) { // we've found a new step in the route -- route already updated
+                
+                // copy steps, removing the current step -- sub method
+                List<Step> stepsSubSet = buildNewSteps(steps, realStep);
+                // recurse -- end of this step becomes the new start; pass truncated steps
+                Route newPartial = new Route(partialRoute);
+                newPartial.addRealStep(realStep);
+                findRoutes(realStep.end, newPartial, stepsSubSet);
+            }
         }
         // we completed the loop and haven't added a new start to the partial route.
         // it's a dead-end: do nothing, let the function return
     }
 
-    private static boolean isFinalDestination(RealStep realStep, String finalDestination, Route partialRoute){
-        partialRoute.realSteps.add(realStep);
-        partialRoute.totalDistance += realStep.step.distance;
-        // if the other city equals the final destination
+    private static List<Step> buildNewSteps(List<Step> steps, RealStep stepToRemove) {
+        List<Step> newSteps = new ArrayList<>();
+        // in a route, you can never return to the same city
+        for (Step step: steps) {
+            if (!step.firstCity.equals(stepToRemove.start) && !step.secondCity.equals(stepToRemove.start)) {
+                newSteps.add(step);
+            }
+        }
+        return newSteps;
+        //return steps.stream().filter(step -> !step.equals(stepToRemove)).collect(Collectors.toList());
+    }
+
+    private static boolean isFinalDestination(RealStep realStep, Route partialRoute){
         if (realStep.end.equals(finalDestination)){
             // we found a terminus: add real step to partial route, create new route and add to routes
-            routes.add(partialRoute);
+            Route actualRoute = new Route(partialRoute);
+            actualRoute.addRealStep(realStep);
+            routes.add(actualRoute);
+//            partialRoute.realSteps.clear();
+//            partialRoute.totalDistance = 0;
             return true;
         }
         return false;
@@ -87,9 +128,19 @@ public class TravelRoute {
 
 
     private static List<Route> routes = new ArrayList<>();
+    private final static String finalDestination;
     public static void main(String[] args) {
-        List<Step> steps = new ArrayList<>();
+        final List<Step> steps = new ArrayList<>();
         buildSteps(steps);
-        findRoutes("", "", new Route(), steps);
+        
+        findRoutes("Mobile", new Route(), steps);
+        
+        for (Route route: routes) {
+            System.out.println(route.toString());
+        }
+    }
+    
+    static {
+        finalDestination = "Huntsville";
     }
 }
