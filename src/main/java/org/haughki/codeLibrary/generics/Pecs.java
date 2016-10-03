@@ -55,9 +55,7 @@ public class Pecs {
     // extract (produce) items from the collection and be sure that they support the
     // Animal interface -- polymorphism.
     public static void producer(Collection<? extends Animal> animals) {
-        for (Animal animal : animals) {
-            animal.Live();
-        }
+        animals.forEach(Animal::Live);
     }
     
     // This method can take a Collection typed to Whale or any parent (super) of Whale. Because the possible type of 

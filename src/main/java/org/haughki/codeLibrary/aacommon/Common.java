@@ -7,7 +7,7 @@ public class Common {
     public static final Path SOME_TEST_DATA;
 
     static {
-        ClassLoader classLoader = new Common().getClass().getClassLoader();
+        ClassLoader classLoader = Common.class.getClassLoader();
         SOME_TEST_DATA = new File(classLoader.getResource("someTestData.data").getFile()).toPath();
     }
 }

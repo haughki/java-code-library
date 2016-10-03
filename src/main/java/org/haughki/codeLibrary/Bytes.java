@@ -1,5 +1,7 @@
 package org.haughki.codeLibrary;
 
+import java.util.Arrays;
+
 /*
 Complicated.  In Java, a byte is an 8-bit signed two's complement integer which
 can represent vals from -128 to 127.  Unfortunately, there's no java lib method to print
@@ -22,9 +24,8 @@ public class Bytes {
 
         System.out.println("Useful bitmasks:");
         int[] a = {1, 2, 4, 8, 16, 32, 64, 128, 127, 191, 223, 239, 247, 251, 253, 254};
-        for (int i : a) {
-            print8Bits(i);
-        }
+
+        Arrays.stream(a).forEach(Bytes::print8Bits);
 
         System.out.println();
         System.out.println("Bitwise operators and masking:");
@@ -107,7 +108,7 @@ public class Bytes {
         System.out.println(String.format("%s %s %s", dec, hex, newBin) + (message == "" ? "" : " -- " + message));
     }
 
-    private static void printByte(byte b, String message) {
+    private static void printByte(final byte b, final String message) {
         //reversed:  {"00000001", "00000010", "00000100", "00001000", "00010000", "00100000", "01000000", "10000000"};
         byte[] masks = {-128, 64, 32, 16, 8, 4, 2, 1};
         String bitString = "";

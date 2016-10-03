@@ -1,11 +1,13 @@
 package org.haughki.codeLibrary.threading;
 
+import java.util.Arrays;
+
 public class SimpleThreads {
 
     public static String s = "bugger";
 
     // Display a message, preceded by the name of the current thread
-    static void threadMessage(String message) {
+    private static void threadMessage(String message) {
         String threadName = Thread.currentThread().getName();
         System.out.format("%s: %s%n", threadName, message);
     }
@@ -18,14 +20,15 @@ public class SimpleThreads {
                     "Little lambs eat ivy",
                     "A kid will eat ivy too"
             };
-            try {
-                for (int i = 0; i < importantInfo.length; i++) {
+            
+            Arrays.stream(importantInfo).forEach(important -> {
+                try {
                     Thread.sleep(2000);
-                    threadMessage(importantInfo[i]);
+                } catch (InterruptedException e) {
+                    threadMessage("I wasn't done!");
                 }
-            } catch (InterruptedException e) {
-                threadMessage("I wasn't done!");
-            }
+                threadMessage(important);
+            });
         }
     }
 

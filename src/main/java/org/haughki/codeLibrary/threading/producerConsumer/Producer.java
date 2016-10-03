@@ -1,6 +1,6 @@
 package org.haughki.codeLibrary.threading.producerConsumer;
 
-import java.util.Random;
+import java.util.Arrays;
 
 public class Producer implements Runnable {
     private final Drop drop;
@@ -16,16 +16,18 @@ public class Producer implements Runnable {
                 "Little lambs eat ivy",
                 "A kid will eat ivy too"
         };
-        Random random = new Random();
+        //Random random = new Random();
 
-        for (int i = 0; i < importantInfo.length; i++) {
-            drop.put(importantInfo[i]);
+
+        Arrays.stream(importantInfo).forEach(important -> {
+            drop.put(important);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 System.out.println("Producer Interrupted! " + e.toString());
             }
-        }
+        });
+        
         drop.put("DONE");
     }
 }
