@@ -9,18 +9,19 @@ public class QuickSort {
     static {
         int size=10;
         int []array = new int[size];
-        int item = 0;
+        int item;
         for(int i=0;i<size;i++){
             item = (int)(Math.random()*100);
             array[i] = item;
         }
         a = array;
+        a = new int[]{30, 67, 38, 23, 60, 72, 86, 22, 71, 94};
     }
 
     public static void main(String[] args) {
         printArray();
         sort();
-        System.out.println("");
+        System.out.println();
         printArray();
     }
 
@@ -47,9 +48,9 @@ public class QuickSort {
         quickSort(partition+1, right);
     }
 
-    // This method is used to partition the given array and returns the integer which points to the sorted pivot index
+    // This method is used to partition the given array and returns the integer which points to the _sorted_ pivot index
     private static int partition(int left,int right,int pivot){
-        int leftCursor = left-1;
+        int leftCursor = left - 1;
         int rightCursor = right;
         while(leftCursor < rightCursor){
             while(a[++leftCursor] < pivot);
@@ -60,18 +61,18 @@ public class QuickSort {
                 swap(leftCursor, rightCursor);
             }
         }
-        swap(leftCursor, right);
+        swap(leftCursor, right);  // move the pivot to it's new position
         return leftCursor;
     }
 
-    // This method is used to swap the values between the two given index
-    public static void swap(int left,int right){
+    // Swaps the values between the two given indexes
+    private static void swap(int left, int right){
         int temp = a[left];
         a[left] = a[right];
         a[right] = temp;
     }
 
-    public static void printArray(){
+    private static void printArray(){
         for(int i : a){
             System.out.print(i+" ");
         }
