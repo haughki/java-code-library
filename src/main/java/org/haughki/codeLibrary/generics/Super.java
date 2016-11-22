@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class Super {
     public static void main(String[] args) {
-        // Note: see also functional.MaxWithComparator
+        // Note: see also functional.MessingWithComparator
 
         // signature of sort():  public static <T> void sort(T[] a, Comparator<? super T> c)
         // This seems confusing at first:  how can the Comparator guarantee that it can compare T's or parents of T?

@@ -5,64 +5,57 @@ public class QuickSort {
 
     private static int []a;
 
-    // Initialize array
-    static {
-        int size=10;
-        int []array = new int[size];
-        int item;
-        for(int i=0;i<size;i++){
-            item = (int)(Math.random()*100);
-            array[i] = item;
-        }
-        a = array;
-        a = new int[]{30, 67, 38, 23, 60, 72, 86, 22, 71, 94};
-    }
+
 
     public static void main(String[] args) {
-        printArray();
+        a = Common.createArray(10);
+        Common.printArray(a);
         sort();
         System.out.println();
-        printArray();
+        Common.printArray(a);
     }
-
-    // This method sorts an array and internally calls quickSort 
-    public static void sort(){
+    
+    public static void setA(int[] array){
+        a = array;
+    }
+    
+    public static void sort() {
         int left = 0;
         int right = a.length-1;
         quickSort(left, right);
     }
 
-    // This method is used to sort the array using quicksort algorithm.
+    // This method is used to sort the array using the quicksort algorithm.
     // It takes the left and the right end of the array as the two cursors.
-    private static void quickSort(int left,int right){
-        // If both cursor scanned the complete array quicksort exits
-        if(left >= right)
+    private static void quickSort(int leftStart, int rightStart){
+        // If both cursor scanned the complete array quicksort returns
+        if(leftStart >= rightStart)
             return;
 
         // For the simplicity, we took the right most item of the array as a pivot 
-        int pivot = a[right];
-        int partition = partition(left, right, pivot);
+        int pivot = a[rightStart];
+        int divideIndex = grossSort(leftStart, rightStart, pivot);
 
-        // Recursively, calls the quicksort with the different left and right parameters of the sub-array
-        quickSort(0, partition-1);
-        quickSort(partition+1, right);
+        // Recursively, calls the grossSort with increasingly smaller chunks of the array
+        quickSort(0, divideIndex - 1);
+        quickSort(divideIndex + 1, rightStart);
     }
 
-    // This method is used to partition the given array and returns the integer which points to the _sorted_ pivot index
-    private static int partition(int left,int right,int pivot){
-        int leftCursor = left - 1;
-        int rightCursor = right;
-        while(leftCursor < rightCursor){
-            while(a[++leftCursor] < pivot);
-            while(rightCursor > 0 && a[--rightCursor] > pivot);
-            if(leftCursor >= rightCursor){
+    // This method is used to grossSort the given array and returns the integer which points to the _sorted_ pivot index
+    private static int grossSort(int leftStart, int rightStart, int pivot){
+        int leftIndex = leftStart - 1;
+        int rightIndex = rightStart;
+        while(true) {
+            while(a[++leftIndex] < pivot);  // move the cursor right until you find an element greater than the pivot
+            while(rightIndex > 0 && a[--rightIndex] > pivot);  // move the cursor left until you find an element less than the pivot
+            if(leftIndex >= rightIndex){  // we've moved through the whole array and grouped everything re the pivot
                 break;
             }else{
-                swap(leftCursor, rightCursor);
+                swap(leftIndex, rightIndex); // swap the greater than pivot (left) with the less than pivot (right)
             }
         }
-        swap(leftCursor, right);  // move the pivot to it's new position
-        return leftCursor;
+        swap(leftIndex, rightStart);  // move the pivot to it's new position
+        return leftIndex;
     }
 
     // Swaps the values between the two given indexes
@@ -71,10 +64,5 @@ public class QuickSort {
         a[left] = a[right];
         a[right] = temp;
     }
-
-    private static void printArray(){
-        for(int i : a){
-            System.out.print(i+" ");
-        }
-    }
+    
 }
