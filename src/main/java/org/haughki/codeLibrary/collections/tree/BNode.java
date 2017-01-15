@@ -18,6 +18,7 @@ class BNode {
 
     @Override
     public String toString() {
-        return String.valueOf(val) + ":" + String.valueOf(depth) + ", ";
+        //return String.valueOf(val) + ":" + String.valueOf(depth) + ", ";
+        return String.valueOf(val) + ", ";
     }
 }

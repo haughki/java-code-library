@@ -27,17 +27,17 @@ public class TreesTest {
     
     @Test
     public void inOrderTraversal() throws Exception {
-        LevelSort levelSort = new LevelSort();
-        levelSort.buildList(searchTreeRoot);
-        levelSort.printTree();
+//        LevelSort levelSort = new LevelSort();
+//        levelSort.buildList(searchTreeRoot);
+//        levelSort.printTree();
         
-//        Trees.inOrderTraversal(searchTreeRoot);
-//        System.out.println();
-//        Trees.inOrderTraversalDescending(searchTreeRoot);
-//        System.out.println();
-//        Trees.preOrderTraversal(searchTreeRoot);
-//        System.out.println();
-//        Trees.postOrderTraversal(searchTreeRoot);
+        Trees.inOrderTraversal(searchTreeRoot);
+        System.out.println();
+        Trees.inOrderTraversalDescending(searchTreeRoot);
+        System.out.println();
+        Trees.preOrderTraversal(searchTreeRoot);
+        System.out.println();
+        Trees.postOrderTraversal(searchTreeRoot);
     }
 
 

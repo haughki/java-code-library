@@ -8,7 +8,7 @@ class Banana {
     static Comparator<Banana> ripenessComparator;
 
     static {
-        // could also do this as a lambda, but this also works (and shows what is really happening, even with the lambda)
+        // could also do this as a lambda, but this also works (and shows what is really happening)
         ripenessComparator = new Comparator<Banana>() {
             @Override
             public int compare(Banana b1, Banana b2) {
@@ -38,8 +38,16 @@ class Banana {
         return this.length;
     }
 
-    public float getDiameter() {
+    float getDiameter() {
         return diameter;
+    }
+    
+    int getRipeness() {
+        return ripeness;
+    }
+
+    String getColor() {
+        return color;
     }
 
     @Override
@@ -138,6 +146,7 @@ public class MessingWithComparator {
         ));
 
         // Progression
+        // Explicit Comparator definition 
         bananas.stream().sorted((b1, b2) -> {
             if (b1.getDiameter() == b2.getDiameter())
                 return 0;
@@ -147,9 +156,14 @@ public class MessingWithComparator {
                 return -1;
         }).forEach(System.out::println);
         System.out.println();
+        // using String's compareTo method -- this is the definition of the "natural" comparison for Strings
+        bananas.stream().sorted((b1, b2) -> b1.getColor().compareTo(b2.getColor())).forEach(System.out::println);
+        System.out.println();
+        // using a pre-defined Comparator, stored in Banana -- nice that it's with the class def.
         bananas.stream().sorted(Banana.ripenessComparator).forEach(System.out::println);
         System.out.println();
         // Here's the "real" one:  no need to ever define a comparator -- just tell it what to use (i.e., length)
-        bananas.stream().sorted(Comparator.comparing(Banana::getLength)).forEach(System.out::println);
+        // and, easy to reverse the order...
+        bananas.stream().sorted(Comparator.comparing(Banana::getLength).reversed()).forEach(System.out::println);
     }
 }

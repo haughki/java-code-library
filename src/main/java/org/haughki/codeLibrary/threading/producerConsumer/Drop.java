@@ -47,7 +47,7 @@ public class Drop {
             }
         }
         // note that the ordering here doesn't matter much: put() can't actually start executing again until take() has
-        // returned and released the synch lock on "this".
+        // returned and released the sync lock on "this".
         messageIsAvailable = false;
         System.out.println("take notifying.");
         notifyAll();  // Notify producer that status has changed.
