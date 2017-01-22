@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.ProgrammingProblems;
+package org.haughki.codeLibrary.programmingProblems;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -106,7 +106,7 @@ public class GridIllumination {
         removeLamp(lamp.leftRight, litLeftRight);
         removeLamp(lamp.rightLeft, litRightLeft);
         
-        lamps.remove(lamp);
+        lamps.remove(lamp);  // remove the lamp so that the next adjacent query doesn't find it
     }
 
     private static void removeLamp(final int aspect, HashMap<Integer, Integer> map) {

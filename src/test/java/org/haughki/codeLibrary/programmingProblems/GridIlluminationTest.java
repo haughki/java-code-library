@@ -1,14 +1,12 @@
-package org.haughki.codeLibrary.ProgrammingProblems;
+package org.haughki.codeLibrary.programmingProblems;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.*;
 import java.util.Map.Entry;
 
-import static org.haughki.codeLibrary.ProgrammingProblems.GridIllumination.*;
-import static org.junit.Assert.*;
+import static org.haughki.codeLibrary.programmingProblems.GridIllumination.*;
 
 public class GridIlluminationTest {
     @Test

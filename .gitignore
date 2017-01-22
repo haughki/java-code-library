@@ -4,5 +4,4 @@ build
 gradle/
 gradlew
 *.iml
-*.gradle
 .gitignore~
