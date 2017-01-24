@@ -33,8 +33,8 @@ public class NestedCounterTest {
             System.out.println("hits @ time: " + (current - start) + " - " + c.getHits());
         }
         System.out.println("hits: " + c.getHits());
-//        Assert.assertTrue(17 > c.getHits());
-//        Assert.assertTrue(13 < c.getHits());
+        Assert.assertTrue(17 > c.getHits());
+        Assert.assertTrue(13 < c.getHits());
     }
 
     @Test

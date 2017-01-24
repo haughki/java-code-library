@@ -1,5 +1,6 @@
 package org.haughki.codeLibrary.programmingProblems.hitCounter;
 
+import java.sql.Time;
 import java.util.*;
 
 
@@ -56,10 +57,12 @@ class NestedCounter {
 
     private void cleanUp(long time) {
         long edge = time - window;
-        TimeSlot last = record.peekLast();
-        while(last.time < edge) {
-            last = record.removeLast();
-            hits -= last.hits;
+        if (record.size() > 0) {
+            TimeSlot removed;
+            while (record.peekLast().time < edge) {
+                removed = record.removeLast();
+                hits -= removed.hits;
+            }
         }
 
         System.out.println("size: " + record.size());
