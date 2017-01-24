@@ -1,15 +1,14 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.hitCounter;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class HitCounter {
+public class UnstudiedHitCounter {
     private final int WINDOW_SIZE = 300;
     class TimeSlot {
         public TimeSlot(long t) {
             time = t;
             hits = 1;
-
         }
         private long time;
         private long hits;
@@ -21,7 +20,7 @@ public class HitCounter {
 
     private Deque<TimeSlot> slots = new ArrayDeque<>(WINDOW_SIZE * 60);
 
-    HitCounter() {
+    UnstudiedHitCounter() {
         time = System.currentTimeMillis()/1000;
     }
     private   void resize(long current) {

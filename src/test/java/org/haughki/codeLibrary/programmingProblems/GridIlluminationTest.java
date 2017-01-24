@@ -6,22 +6,21 @@ import org.junit.Test;
 import java.util.*;
 import java.util.Map.Entry;
 
-import static org.haughki.codeLibrary.programmingProblems.GridIllumination.*;
 
 public class GridIlluminationTest {
     @Test
     public void test1() throws Exception {
         Set<Coordinate> lamps = new HashSet<>();
         lamps.add(new Coordinate(1,2));
-        driver(lamps);
+        Illuminator ill = new Illuminator(lamps);
         /*  1, 1
             2, 1
             -1, 1
             3, 1   */
-        litRows.forEach((k, v) -> System.out.println(k + ", " + v));
-        litColumns.forEach((k, v) -> System.out.println(k + ", " + v));
-        litLeftRight.forEach((k, v) -> System.out.println(k + ", " + v));
-        litRightLeft.forEach((k, v) -> System.out.println(k + ", " + v));
+        ill.litRows.forEach((k, v) -> System.out.println(k + ", " + v));
+        ill.litColumns.forEach((k, v) -> System.out.println(k + ", " + v));
+        ill.litLeftRight.forEach((k, v) -> System.out.println(k + ", " + v));
+        ill.litRightLeft.forEach((k, v) -> System.out.println(k + ", " + v));
     }
 
     @Test
@@ -29,66 +28,66 @@ public class GridIlluminationTest {
         Set<Coordinate> lamps = new HashSet<>();
         lamps.add(new Coordinate(1,2));
         lamps.add(new Coordinate(1,3));
-        driver(lamps);
+        Illuminator ill = new Illuminator(lamps);
         /*  1, 2
             2, 1   3, 1
             -1, 1   -2, 1
             3, 1   4, 1  */
-        litRows.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
+        ill.litRows.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
         System.out.println();
-        litColumns.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
+        ill.litColumns.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
         System.out.println();
-        litLeftRight.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
+        ill.litLeftRight.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
         System.out.println();
-        litRightLeft.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
+        ill.litRightLeft.forEach((k, v) -> System.out.print(k + ", " + v + "   "));
     }
 
     @Test
     public void queryTurnsOff() throws Exception {
         Set<Coordinate> lamps = new HashSet<>();
         lamps.add(new Coordinate(1,2));
-        
-        driver(lamps);
-        Assert.assertTrue(areCoordinatesLit(new Coordinate(1,2)));
-        assertAllSizeEqual(0);
+
+        Illuminator ill = new Illuminator(lamps);
+        Assert.assertTrue(ill.isLit(new Coordinate(1,2)));
+        assertAllSizeEqual(ill, 0);
         Assert.assertEquals(0, lamps.size());
 
         lamps.add(new Coordinate(1,2));
-        driver(lamps);
-        Assert.assertFalse(areCoordinatesLit(new Coordinate(3,1)));
-        assertAllSizeEqual(1);
-        Assert.assertTrue(areCoordinatesLit(new Coordinate(2,3)));
-        assertAllSizeEqual(0);
-        Assert.assertEquals(0, lamps.size());
-
-        lamps.add(new Coordinate(1,2));
-        lamps.add(new Coordinate(1,3));
-        driver(lamps);
-        Assert.assertFalse(areCoordinatesLit(new Coordinate(4,1)));
-        Assert.assertEquals(1, litRows.size());
-        Assert.assertEquals(2, litColumns.size());
-        Assert.assertEquals(2, litLeftRight.size());
-        Assert.assertEquals(2, litRightLeft.size());
-        Assert.assertTrue(areCoordinatesLit(new Coordinate(2,3)));
-        assertAllSizeEqual(0);
+        ill = new Illuminator(lamps);
+        Assert.assertFalse(ill.isLit(new Coordinate(3,1)));
+        assertAllSizeEqual(ill, 1);
+        Assert.assertTrue(ill.isLit(new Coordinate(2,3)));
+        assertAllSizeEqual(ill, 0);
         Assert.assertEquals(0, lamps.size());
 
         lamps.add(new Coordinate(1,2));
         lamps.add(new Coordinate(1,3));
-        driver(lamps);
-        Assert.assertTrue(areCoordinatesLit(new Coordinate(0,1)));
-        assertAllSizeEqual(1);
-        Assert.assertFalse(areCoordinatesLit(new Coordinate(2,1)));
-        assertAllSizeEqual(1);
-        Assert.assertTrue(areCoordinatesLit(new Coordinate(2,4)));
-        assertAllSizeEqual(0);
+        ill = new Illuminator(lamps);
+        Assert.assertFalse(ill.isLit(new Coordinate(4,1)));
+        Assert.assertEquals(1, ill.litRows.size());
+        Assert.assertEquals(2, ill.litColumns.size());
+        Assert.assertEquals(2, ill.litLeftRight.size());
+        Assert.assertEquals(2, ill.litRightLeft.size());
+        Assert.assertTrue(ill.isLit(new Coordinate(2,3)));
+        assertAllSizeEqual(ill, 0);
+        Assert.assertEquals(0, lamps.size());
+
+        lamps.add(new Coordinate(1,2));
+        lamps.add(new Coordinate(1,3));
+        ill = new Illuminator(lamps);
+        Assert.assertTrue(ill.isLit(new Coordinate(0,1)));
+        assertAllSizeEqual(ill, 1);
+        Assert.assertFalse(ill.isLit(new Coordinate(2,1)));
+        assertAllSizeEqual(ill, 1);
+        Assert.assertTrue(ill.isLit(new Coordinate(2,4)));
+        assertAllSizeEqual(ill, 0);
     }
 
-    private void assertAllSizeEqual(final int size) {
-        Assert.assertEquals(size, litRows.size());
-        Assert.assertEquals(size, litColumns.size());
-        Assert.assertEquals(size, litLeftRight.size());
-        Assert.assertEquals(size, litRightLeft.size());
+    private void assertAllSizeEqual(final Illuminator ill, final int size) {
+        Assert.assertEquals(size, ill.litRows.size());
+        Assert.assertEquals(size, ill.litColumns.size());
+        Assert.assertEquals(size, ill.litLeftRight.size());
+        Assert.assertEquals(size, ill.litRightLeft.size());
     }
 
     @Test

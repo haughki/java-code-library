@@ -24,34 +24,30 @@ The minute must be consist of two digits and may contain a leading zero, for exa
 public class BinaryWatch {
     public static void main(String[] args) {
         BinWatchSolution bws = new BinWatchSolution();
-        List<String> valid = bws.readBinaryWatch(0);
+        List<String> valid = bws.readBinaryWatch(4);
         valid.forEach(System.out::println);
     }
 }
 
+class HoursMins {
+    HoursMins(byte hours, byte mins) {this.hours = hours; this.mins = mins;}
+    public byte hours = 0;
+    public byte mins = 0;
+}
+
 class BinWatchSolution {
-    final static private int[] ON_VALUES = {-8, -4, -2, -1, 32, 16, 8, 4, 2, 1};
-    private List<int[]> combos = new ArrayList<>();
-    private int comboIndex = -1;
-    private int numberOn;
+    final static private byte[] ON_VALUES = {-8, -4, -2, -1, 32, 16, 8, 4, 2, 1};
+    //final static private byte[] ON_VALUES = {-2, -1, 32, 16};
+    private List<HoursMins> combos = new ArrayList<>();
+
     public List<String> readBinaryWatch(int numberOn) {
-        this.numberOn = numberOn;
-        down(new int[this.numberOn], 0, this.numberOn - 1);
+        down((byte)0, (byte)0, 0, numberOn - 1);
+        
         List<String> validTimes = new ArrayList<>();
         combos.forEach(c -> {
-            int hours = 0;
-            int mins = 0;
-            for (int i = 0; i < c.length; i++) {
-                int curr = c[i];
-                //System.out.print(curr + " ");
-                if (curr > 0)
-                    mins += curr;
-                else
-                    hours += Math.abs(curr);
-            }
-            if (hours < 13 && mins < 60) {
+            if (c.hours < 12 && c.mins < 60) {
                 //System.out.print(String.format("%d:%02d", hours, mins));
-                validTimes.add(String.format("%d:%02d", hours, mins));
+                validTimes.add(String.format("%d:%02d", c.hours, c.mins));
             }
 
             //System.out.println();
@@ -59,18 +55,22 @@ class BinWatchSolution {
         return validTimes;
     }
 
-
-    private void down(int[] combo, int start, int stop) {
+    private void down(byte hours, byte mins, int start, int stop) {
         if (stop < 0) {
-            combos.add(Arrays.copyOf(combo, this.numberOn));
+            combos.add(new HoursMins(hours, mins));
             return;
         }
-        comboIndex++;
         for (int i = start; i < ON_VALUES.length - stop; i++) {
-            combo[comboIndex] = ON_VALUES[i];
-            down(combo, i + 1, stop - 1);
+            byte val = ON_VALUES[i];
+            //System.out.println(val);
+            byte newHours = hours, newMins = mins;
+            if (val > 0)
+                newMins += val;
+            else
+                newHours += Math.abs(val);
+
+            down(newHours, newMins, i + 1, stop - 1);
         }
-        comboIndex--;
     }
 }
 
