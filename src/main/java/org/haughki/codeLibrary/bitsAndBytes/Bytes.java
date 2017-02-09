@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary;
+package org.haughki.codeLibrary.bitsAndBytes;
 
 import java.util.Arrays;
 

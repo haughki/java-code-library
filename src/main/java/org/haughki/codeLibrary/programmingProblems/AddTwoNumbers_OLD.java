@@ -1,16 +1,16 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-class TwoSum {
+class AddTwoNumbers_OLD {
     final private List<Integer> l1;
     final private List<Integer> l2;
     final private ListIterator<Integer> leader;
     final private ListIterator<Integer> follower;
 
-    TwoSum(List<Integer> l1, List<Integer> l2) {
+    AddTwoNumbers_OLD(List<Integer> l1, List<Integer> l2) {
         this.l1 = l1;
         this.l2 = l2;
         if (l1.size() > l2.size()) {

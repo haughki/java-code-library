@@ -1,5 +1,5 @@
 
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
 import java.util.ArrayList;
 import java.util.Deque;
