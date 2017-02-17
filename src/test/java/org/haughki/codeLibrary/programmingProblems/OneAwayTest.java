@@ -1,9 +1,8 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
+import org.haughki.codeLibrary.programmingProblems.OneAway;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class OneAwayTest {
     @Test

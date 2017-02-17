@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
 import org.junit.Test;
 

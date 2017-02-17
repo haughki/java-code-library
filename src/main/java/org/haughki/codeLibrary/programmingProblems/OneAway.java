@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
 class OneAway {
     private final String s1;

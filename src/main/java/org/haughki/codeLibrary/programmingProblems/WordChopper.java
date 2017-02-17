@@ -1,9 +1,12 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+Wow - what a mess.  See "WordChopperII".
+ */
 public class WordChopper {
     static final String THE_WORD = "columbia";
     private static final int[] baseline;

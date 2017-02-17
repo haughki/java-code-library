@@ -23,8 +23,10 @@ public class SingleNumber {
         return previous.iterator().next();
     }
 
+    // finds the unique number in an array of duplicates with only one number unique.  XOR'ing duplicates, 
+    // in any order, results in 0:  1 ^ 1 = 0, 0 ^ 0 = 0. 
     private static int singleNumber2(int[] nums) {
-        int result = 0;
+        int result = 0;  // this init is important:  0 ^ n = n.
         for (int i = 0; i < nums.length; i++) {
             result ^= nums[i];
         }

@@ -1,11 +1,8 @@
-package org.haughki.codeLibrary.algorithm;
+package org.haughki.codeLibrary.programmingProblems;
 
+import org.haughki.codeLibrary.programmingProblems.MoveZeros;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class MoveZerosTest {
     @Test

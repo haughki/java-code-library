@@ -83,12 +83,12 @@ class MinStack {
     public int top() {
         if (head != null)
             return head.val;
-        return Integer.MIN_VALUE;
+        throw new IllegalStateException();
     }
 
     public int getMin() {
         if (head != null)
             return head.min;
-        return Integer.MIN_VALUE;
+        throw new IllegalStateException();
     }
 }
