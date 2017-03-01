@@ -2,7 +2,7 @@ package org.haughki.codeLibrary.collections;
 
 import java.util.BitSet;
 
-public class BitVector {
+public class TestBitSet {
     public static void main(String[] args) {
         // use a bit set to track the "on" coordinates of a left-to-right diagonal in a matrix
         // here I just set them all to "on", just to see if it works

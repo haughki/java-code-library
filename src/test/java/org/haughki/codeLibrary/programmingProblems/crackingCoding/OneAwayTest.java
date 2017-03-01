@@ -1,6 +1,6 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.crackingCoding;
 
-import org.haughki.codeLibrary.programmingProblems.OneAway;
+import org.haughki.codeLibrary.programmingProblems.crackingCoding.OneAway;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -56,10 +56,5 @@ public class OneAwayTest {
         Assert.assertFalse(oa.isOneAway());
         
     }
-
-    @Test
-    public void temp() throws Exception {
-
-    }
-
+    
 }

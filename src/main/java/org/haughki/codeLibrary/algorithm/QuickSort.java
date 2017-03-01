@@ -1,5 +1,7 @@
 package org.haughki.codeLibrary.algorithm;
 
+import org.haughki.codeLibrary.aacommon.Common;
+
 // taken from:  https://examples.javacodegeeks.com/core-java/quicksort-algorithm-in-java-code-example/
 public class QuickSort {
 
@@ -25,18 +27,17 @@ public class QuickSort {
         quickSort(left, right);
     }
 
-    // This method is used to sort the array using the quicksort algorithm.
-    // It takes the left and the right end of the array as the two cursors.
+    // The left and the right end of the array are the two cursors.
     private static void quickSort(int leftStart, int rightStart){
-        // If both cursor scanned the complete array quicksort returns
+        // If both cursors have scanned the complete array, quicksort returns
         if(leftStart >= rightStart)
             return;
 
-        // For the simplicity, we took the right most item of the array as a pivot 
+        // For simplicity, we take the right-most item of the array as a pivot 
         int pivot = a[rightStart];
         int divideIndex = grossSort(leftStart, rightStart, pivot);
 
-        // Recursively, calls the grossSort with increasingly smaller chunks of the array
+        // Recursively calls grossSort with increasingly smaller chunks of the array
         quickSort(0, divideIndex - 1);
         quickSort(divideIndex + 1, rightStart);
     }

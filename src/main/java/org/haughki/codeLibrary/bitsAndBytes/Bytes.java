@@ -92,7 +92,7 @@ public class Bytes {
         System.out.println(String.format("%s %s %s", dec, hex, bin) + (message == "" ? "" : " -- " + message));
     }
 
-    private static void print32Bits(int i, String message) {
+    public static void print32Bits(int i, String message) {
         String dec = String.format("%11s", Integer.toString(i));
         String hex = String.format("0x%8s", Integer.toHexString(i)).replace(' ', '0');
         String bin = String.format("%32s", Integer.toBinaryString(i)).replace(' ', '0');

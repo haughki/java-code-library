@@ -1,0 +1,95 @@
+package org.haughki.codeLibrary.programmingProblems.crackingCoding;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/*
+CtCI p. 91
+ */
+public class PalindromePermutation {
+    public static void main(String[] args) {
+        PalinPerm p = new PalinPerm();
+        String s = "Tact Coa";
+        System.out.println(p.isPalindrome(s));
+        s = "abccbA";
+        System.out.println(p.isPalindrome(s));
+        s = "abCdcba";
+        System.out.println(p.isPalindrome(s));
+        s = "abcbdbcba";
+        System.out.println(p.isPalindrome(s));
+        s = "A man a plan a canal Panama";
+        System.out.println(p.isPalindrome(s));
+        
+        System.out.println();
+        s = "abcdcb";
+        System.out.println(p.isPalindrome(s));
+        s = "abcdcbb";
+        System.out.println(p.isPalindrome(s));
+        
+    }
+}
+
+class PalinPerm {
+
+    /*
+    From CtCI, p. 198
+     */
+    boolean isPalindrome(String s) {
+        int bitVector = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int c = charToNumber(Character.toLowerCase(s.charAt(i)));
+            bitVector = toggle(bitVector, c);
+        }
+        return bitVector == 0 || oneBitSet(bitVector);
+    }
+
+    // If an int only has 1 bit set, subtracting 1 will create an int full of 1's to the right of the original 1.
+    // and'ing that number to itself will result in 0.  If not, there's at least one other bit set somewhere...
+    private boolean oneBitSet(int bitVector) {
+        return (bitVector & (bitVector - 1)) == 0;
+    }
+
+    private int toggle(int vector, int index) {
+        if (index < 0) return vector;
+        int mask = 1 << index;  // shift '1' left by the number of the index
+        if ((vector & mask) == 0)  // bit not set
+            vector |= mask;  // set it to 1
+        else
+            vector &= ~mask;  // set it to 0
+        return vector;
+    }
+    
+    private int charToNumber(char convert) {
+        int a = Character.getNumericValue('a');
+        int z = Character.getNumericValue('z');
+        int c = Character.getNumericValue(convert);
+        if (a <= c && c <= z)
+            return c - a; // start at 0 for vector
+        else
+            return -1;
+    }
+
+    // My first attempt -- not bad
+    boolean isPalindromeSet(String s) {
+        Set<Character> record = new HashSet<>();
+        int charCount = 0; // need a separate count because of spaces
+        for (int i = 0; i < s.length(); i++) {
+            char c = Character.toLowerCase(s.charAt(i));
+            if (c == ' ')
+                continue;
+            charCount++;
+            if (record.contains(c))
+                record.remove(c);
+            else
+                record.add(c);
+        }
+        
+        // Note that we don't need all of this.  If size is 0 or 1, it must be a palindrome.
+        // If a string of even length has 1 bad char, it must have at least 2.  A string of odd length cannot have
+        // 0 bad chars....  So, the correct check is: record.size() == 0 or record.size() == 1.
+        if (charCount % 2 == 0) {
+            return record.size() == 0;
+        } else
+            return record.size() == 1;
+    }
+}

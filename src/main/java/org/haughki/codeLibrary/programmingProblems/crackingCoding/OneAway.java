@@ -1,12 +1,12 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.crackingCoding;
 
+/*
+Crack the Coding Interview, p. 91.
+ */
 class OneAway {
     private final String s1;
     private final String s2;
     private int numDifferences = 0;
-//    public static void main(String[] args) {
-//        System.out.println(isOneAway(s1, s2));
-//    }
     
     OneAway(String _s1, String _s2) {
         s1 = _s1;
@@ -31,7 +31,7 @@ class OneAway {
             if (j < s2.length())
                 s2Curr = s2.codePointAt(j);
             else {
-                return stillOneAway();  // s2 is incremented out, s1 is not -- this constitues a difference.
+                return stillOneAway();  // s2 is incremented out, s1 is not -- this constitutes a difference.
             }                           // In any case, we're done
             
             if (s1Curr == s2Curr) {
@@ -67,8 +67,4 @@ class OneAway {
         numDifferences++; // s2 isn't as long as s1, there's a diff
         return numDifferences < 2;
     }
-
-//    private static boolean canContinue(int index1, int codePoint1, int index2, int codePoint2) {
-//        
-//    }
 }
