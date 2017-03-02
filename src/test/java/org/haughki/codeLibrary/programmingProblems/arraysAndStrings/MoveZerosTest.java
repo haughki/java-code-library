@@ -1,6 +1,6 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
-import org.haughki.codeLibrary.programmingProblems.MoveZeros;
+import org.haughki.codeLibrary.programmingProblems.arraysAndStrings.MoveZeros;
 import org.junit.Assert;
 import org.junit.Test;
 

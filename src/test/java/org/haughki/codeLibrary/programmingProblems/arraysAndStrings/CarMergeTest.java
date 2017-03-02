@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,5 +1,6 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.dynamicMemoized;
 
+import org.haughki.codeLibrary.programmingProblems.dynamicMemoized.WordChopper;
 import org.junit.Test;
 
 

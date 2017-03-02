@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
 import java.util.HashSet;
 import java.util.Set;

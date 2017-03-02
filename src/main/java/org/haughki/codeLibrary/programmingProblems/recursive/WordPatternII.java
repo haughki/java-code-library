@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.recursive;
 
 import java.util.HashMap;
 import java.util.HashSet;

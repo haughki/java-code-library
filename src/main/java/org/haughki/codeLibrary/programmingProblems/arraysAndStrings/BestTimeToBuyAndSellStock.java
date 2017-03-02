@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
 /*
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/

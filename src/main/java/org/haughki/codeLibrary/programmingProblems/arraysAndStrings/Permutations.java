@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
 /*
 http://stackoverflow.com/questions/35470605/permutation-of-string-using-backtracking-algorithm

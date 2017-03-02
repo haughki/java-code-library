@@ -1,9 +1,8 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
+import org.haughki.codeLibrary.programmingProblems.arraysAndStrings.ReverseString;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class ReverseStringTest {
 

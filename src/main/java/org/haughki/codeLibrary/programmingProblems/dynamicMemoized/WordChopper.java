@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.dynamicMemoized;
 
 import java.util.ArrayList;
 import java.util.Arrays;
