@@ -1,5 +1,6 @@
 package org.haughki.codeLibrary.programmingProblems;
 
+import org.haughki.codeLibrary.aacommon.Coordinate;
 import org.junit.Assert;
 import org.junit.Test;
 

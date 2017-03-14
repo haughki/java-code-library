@@ -57,24 +57,39 @@ public class MyGraph<T> {
         visited = new HashSet<>();
     }
     
-    void depthSearch(Node node, final T searchTarget) {
-        if(!visited.contains(node)){
-            visited.add(node);
-            System.out.println(node.val);
-            if (node.val.equals(searchTarget)) {
-                System.out.println("Found target: " + node.val);
-                depthSearchFinished = true;
-                return;
-            }
-            for (Node n: node.adjacent) {
-                depthSearch(n, searchTarget);
-                if (depthSearchFinished)
-                    return;
+//    void depthSearch(Node node, final T searchTarget) {
+//        if(!visited.contains(node)){
+//            visited.add(node);
+//            System.out.println(node.val);
+//            if (node.val.equals(searchTarget)) {
+//                System.out.println("Found target: " + node.val);
+//                depthSearchFinished = true;
+//                return;
+//            }
+//            for (Node n: node.adjacent) {
+//                depthSearch(n, searchTarget);
+//                if (depthSearchFinished)
+//                    return;
+//            }
+//        }
+//    }
+
+    T depthSearch(Node node, final T searchTarget) {
+        if (node == null) return null;
+        visited.add(node);
+        System.out.println(node.val);
+        if (node.val.equals(searchTarget))
+            return node.val;
+        for(Node n : node.adjacent) {
+            T ret;
+            if (!visited.contains(n)) {
+                ret = depthSearch(n, searchTarget);
+                if (ret != null)
+                    return ret;
             }
         }
+        return null;
     }
-    
-
 }
 
 

@@ -25,13 +25,19 @@ minStack.pop();
 minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 
-Critical insight:  it seems like, to know the min value for the current stack, we need to store all of the values, sorted.
-Then, when we pop, we need to remove the correct value from the sorted list.  But, we don't need to do that.  All we need
-to know is:  for any head of the stack, what is the min value for that stack.  So, for each node in the stack, we just
-need to store the min value _up to that point_. I.e., we don't care about anything other than the min value, so we can
-lose the rest of the values.  So, every time we add a new node, compare it to the min value of the current head (which is
-the min value _up to that point_). If it's less, the new node's value become the new head min value; else, use the previous
-head's min value.
+Critical insight:  it seems like, to know the min value for the current stack, we need to store all of the values, 
+sorted.  Then, when we pop, we need to remove the correct value from the sorted list.  But, we don't need to do that.  
+All we need to know is:  for any node of the stack, if that node were the head, what is the min value for the stack?  
+I.e., if you _add_ a new node to the head, what's the min value, but also if you pop two nodes, what is the min value 
+for the new head?
+The trick is to store a min value along with the actual value of each node.  The min value for each node is the min
+value _up to that point_ in the stack.  I.e., we don't care about anything other than the min value, so we don't need to
+store a separate sorted structure.  Every time we add a new node, compare it's actual value to the min value of the 
+current head (which is the min value _up to that point_). If it's less, the new node's value becomes the new head's min 
+value; else, use the previous head's min value.
+
+Take away:  If you need to know the min value for a set of values, and you get them one at a time, just compare and 
+store the min value up to that point.
  */
 
 public class MinStackProblem {

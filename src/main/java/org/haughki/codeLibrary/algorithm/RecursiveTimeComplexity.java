@@ -2,11 +2,12 @@ package org.haughki.codeLibrary.algorithm;
 
 public class RecursiveTimeComplexity {
     public static void main(String[] args) {
-        System.out.println(recursiveFun3(25));
-        System.out.println(recursiveFun3(125));
-        System.out.println(recursiveFun3(625));
-        System.out.println(recursiveFun3(3125));
-        System.out.println(recursiveFun3(15625));
+//        System.out.println(recursiveFun3(25));
+//        System.out.println(recursiveFun3(125));
+//        System.out.println(recursiveFun3(625));
+//        System.out.println(recursiveFun3(3125));
+//        System.out.println(recursiveFun3(15625));
+        System.out.println(recursiveFun6(0, 5));
     }
     
     /*
@@ -72,5 +73,18 @@ public class RecursiveTimeComplexity {
         else
             return 1 + recursiveFun5(n-5);
     }
-    
+
+    // O(n!)?  O(n^4)?  Something terrible.  This is essentially the algorithm for calculating all of the permutations
+    // of a string of len m.
+    private static int recursiveFun6(int n, int m)
+    {
+        int count = 0;
+        if (n >= m)
+            return 0;
+        for (int i = n; i < m; i++) {
+            count += 1 + recursiveFun6(n + 1, m);
+        }
+        return count;
+    }
+
 }
