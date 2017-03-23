@@ -2,12 +2,7 @@ package org.haughki.codeLibrary.algorithm;
 
 public class RecursiveTimeComplexity {
     public static void main(String[] args) {
-//        System.out.println(recursiveFun3(25));
-//        System.out.println(recursiveFun3(125));
-//        System.out.println(recursiveFun3(625));
-//        System.out.println(recursiveFun3(3125));
-//        System.out.println(recursiveFun3(15625));
-        System.out.println(recursiveFun6(0, 5));
+        System.out.println(recurseTwice(3));
     }
     
     /*
@@ -58,6 +53,23 @@ public class RecursiveTimeComplexity {
             recursiveFun4(n-1, m+1, o);
             recursiveFun4(n-1, m, o+1);
         }
+    }
+
+    // O(2^n)
+    // Same as above, but a little clearer.  This counts the time complexity, so that you can "see" the 2^n.  I'm giving
+    // +1 to the base case -- in reality there might be much less work going on there, but it's still _something_, and
+    // should amount to the same time complexity in either case (but giving the base case +1 make it easier to see
+    // the 2^n).
+    private static int recurseTwice(int n)
+    {
+        if (n < 1)
+            return 1;
+        // this:
+//        int count = recurseTwice(n-1);
+//        count += recurseTwice(n-1);
+//        return ++count;
+        // is the same as this:
+        return 1 + recurseTwice(n - 1) + recurseTwice(n - 1);
     }
 
     // O(n^2)

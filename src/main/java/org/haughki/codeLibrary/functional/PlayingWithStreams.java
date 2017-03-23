@@ -1,5 +1,6 @@
 package org.haughki.codeLibrary.functional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,11 +12,21 @@ public class PlayingWithStreams {
     public static void main(String[] args) {
         
         // find unique chars in an array of strings
-        List<String> words = Arrays.asList("hey", "why", "am", "I", "doing", "this", "again");
+        List<String> words = new ArrayList<>(Arrays.asList("hey", "why", "am", "I", "doing", "this", "again"));
         //List<?> l = words.stream().map(w -> w.split("")).flatMap(Arrays::stream).distinct().collect(toList());
         System.out.println(Stream.of("hey", "why", "am", "I", "doing", "this", "again").flatMapToInt(String::chars).distinct()
                 .mapToObj(i -> Character.toString((char)i)).collect(Collectors.joining()));
         
+        System.out.println();
+        // UnaryOperator - specialization of Function<T,R> which always returns same type (i.e., Function<T,T>).
+        words.replaceAll(String::toUpperCase);
+        words.forEach(System.out::print);
+
+        System.out.println();
+        // removeIf
+        words.removeIf(w -> w.endsWith("Y"));
+        words.forEach(System.out::print);
+
         System.out.println();
         
         // flatmap:  find the pairs of the two sets
