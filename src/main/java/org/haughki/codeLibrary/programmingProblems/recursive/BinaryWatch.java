@@ -1,16 +1,21 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.recursive;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
+3/29
 https://leetcode.com/problems/binary-watch/
-A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59).
+
+see also:  recursive.OrderPermutationWithLimit
+
+A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the 
+minutes (0-59).
 
 Each LED represents a zero or one, with the least significant bit on the right.
 
-Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.
+Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the 
+watch could represent.
 
 Example:
 
@@ -41,7 +46,7 @@ class BinWatchSolution {
     private List<HoursMins> combos = new ArrayList<>();
 
     public List<String> readBinaryWatch(int numberOn) {
-        down((byte)0, (byte)0, 0, numberOn - 1);
+        recurse((byte)0, (byte)0, 0, numberOn - 1);
         
         List<String> validTimes = new ArrayList<>();
         combos.forEach(c -> {
@@ -55,7 +60,7 @@ class BinWatchSolution {
         return validTimes;
     }
 
-    private void down(byte hours, byte mins, int start, int stop) {
+    private void recurse(byte hours, byte mins, int start, int stop) {
         if (stop < 0) {
             combos.add(new HoursMins(hours, mins));
             return;
@@ -69,7 +74,7 @@ class BinWatchSolution {
             else
                 newHours += Math.abs(val);
 
-            down(newHours, newMins, i + 1, stop - 1);
+            recurse(newHours, newMins, i + 1, stop - 1);
         }
     }
 }

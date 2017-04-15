@@ -1,4 +1,4 @@
-package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
+package org.haughki.codeLibrary.programmingProblems.recursive;
 
 /*
 http://stackoverflow.com/questions/35470605/permutation-of-string-using-backtracking-algorithm
@@ -7,6 +7,11 @@ Given a string, print all permutations of a given string.
 
 The permutations of string ABC.
 ABC ACB BAC BCA CBA CAB
+
+Diagrams:  
+https://goo.gl/photos/8DLwPmLhuzu5aCF6A
+https://goo.gl/photos/259aT7AX4Bi8R6cN6
+https://goo.gl/photos/8a17P7iBszmy72nb8
  */
 public class Permutations {
 
@@ -32,7 +37,7 @@ public class Permutations {
             }
         }
     }
-
+    
     /*
     Heap's algorithm -- arrg.
      */

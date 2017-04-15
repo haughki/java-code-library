@@ -1,12 +1,11 @@
-package org.haughki.codeLibrary.programmingProblems;
+package org.haughki.codeLibrary.programmingProblems.recursive;
 
+import org.haughki.codeLibrary.programmingProblems.recursive.BinWatchSolution;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class BinWatchSolutionTest {
     @Test

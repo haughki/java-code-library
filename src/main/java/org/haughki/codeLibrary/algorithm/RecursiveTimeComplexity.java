@@ -45,11 +45,8 @@ public class RecursiveTimeComplexity {
     private static void recursiveFun4(int n, int m, int o)
     {
         if (n <= 0)
-        {
             System.out.println(String.format("%d, %d\n", m, o));
-        }
-        else
-        {
+        else {
             recursiveFun4(n-1, m+1, o);
             recursiveFun4(n-1, m, o+1);
         }

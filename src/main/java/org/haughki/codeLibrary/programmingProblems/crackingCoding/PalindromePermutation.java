@@ -32,12 +32,19 @@ public class PalindromePermutation {
 class PalinPerm {
 
     /*
+    4/10
     From CtCI, p. 198
+    The idea here is that any palindrome has the following properties:
+        - for any character, that character MUST occur an even number of times, EXCEPT that one character MAY occur an
+        odd number of times, e.g., ppdddpp.
+    So, use a bit vector to track how many times a given char has occurred.  Each time you see a given char, toggle that
+    bit (ascii value) in the vector.  If you end up with 0 or 1 bits set in the vector, it's a palindrome (or a 
+    permutation of a palindrome).
      */
     boolean isPalindrome(String s) {
         int bitVector = 0;
         for (int i = 0; i < s.length(); i++) {
-            int c = charToNumber(Character.toLowerCase(s.charAt(i)));
+            int c = charToBitNum(Character.toLowerCase(s.charAt(i)));
             bitVector = toggle(bitVector, c);
         }
         return bitVector == 0 || oneBitSet(bitVector);
@@ -59,10 +66,11 @@ class PalinPerm {
         return vector;
     }
     
-    private int charToNumber(char convert) {
-        int a = Character.getNumericValue('a');
-        int z = Character.getNumericValue('z');
-        int c = Character.getNumericValue(convert);
+    private int charToBitNum(char convert) {
+        int a = (int)'a';
+        int z = (int)'z';
+        int c = (int)convert;
+
         if (a <= c && c <= z)
             return c - a; // start at 0 for vector
         else
