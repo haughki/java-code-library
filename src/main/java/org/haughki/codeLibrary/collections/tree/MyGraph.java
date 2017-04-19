@@ -3,44 +3,44 @@ package org.haughki.codeLibrary.collections.tree;
 import java.util.*;
 
 public class MyGraph<T> {
-    class Node {
+    class GNode {
         class SearchState {
             boolean reset = false;
             boolean visited = false;
-            List<Node> path = new ArrayList<>();
+            List<GNode> path = new ArrayList<>();
         }
         T val;
-        List<Node> adjacent = new ArrayList<>();
+        List<GNode> adjacent = new ArrayList<>();
         SearchState searchState;
         
-        Node(T val) {
+        GNode(T val) {
             this.val = val;
         }
         
-        void addAdjacent(List<Node> toAdd) {
+        void addAdjacent(List<GNode> toAdd) {
             toAdd.forEach(n -> this.adjacent.add(n));
             this.adjacent.forEach(n -> n.adjacent.add(this));
         }
     }
     
-    private Queue<Node> searchQueue = new ArrayDeque<>();
-    private Set<Node> visited = new HashSet<>();
+    private Queue<GNode> searchQueue = new ArrayDeque<>();
+    private Set<GNode> visited = new HashSet<>();
     private boolean depthSearchFinished = false;
     
-    Node createNode(T val) {
-        return new Node(val);
+    GNode createNode(T val) {
+        return new GNode(val);
     }
 
-    void findPath(Node node1, Node node2) {
+    void findPath(GNode node1, GNode node2) {
 
     }
 
-    void breadthSearch(Node startNode, T searchTarget) {
+    void breadthSearch(GNode startNode, T searchTarget) {
         System.out.println("Searching for: " + searchTarget);
         visited.add(startNode);
         searchQueue.add(startNode);
         while(!searchQueue.isEmpty()) {
-            Node current = searchQueue.remove();
+            GNode current = searchQueue.remove();
             System.out.println(current.val);
             if (current.val.equals(searchTarget)) {
                 System.out.println("Found target: " + current.val);
@@ -74,13 +74,13 @@ public class MyGraph<T> {
 //        }
 //    }
 
-    T depthSearch(Node node, final T searchTarget) {
+    T depthSearch(GNode node, final T searchTarget) {
         if (node == null) return null;
         visited.add(node);
         System.out.println(node.val);
         if (node.val.equals(searchTarget))
             return node.val;
-        for(Node n : node.adjacent) {
+        for(GNode n : node.adjacent) {
             T ret;
             if (!visited.contains(n)) {
                 ret = depthSearch(n, searchTarget);
