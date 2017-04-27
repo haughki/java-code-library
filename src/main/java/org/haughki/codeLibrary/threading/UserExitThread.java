@@ -1,7 +1,5 @@
 package org.haughki.codeLibrary.threading;
 
-import sun.plugin.dom.exception.InvalidStateException;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -62,7 +60,7 @@ public class UserExitThread {
             t.interrupt();
             t.join(5000);
             if(t.isAlive())
-                throw new InvalidStateException("Unable to kill spawned thread!");
+                throw new IllegalStateException("Unable to kill spawned thread!");
         }
         threadMessage("Exiting...");
         

@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /*
+4/19
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
 push(x) -- Push element x onto stack.

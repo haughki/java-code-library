@@ -1,5 +1,6 @@
 package org.haughki.codeLibrary.programmingProblems.hackerRank;
 
+import org.haughki.codeLibrary.aacommon.SysOutCapture;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,22 +13,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class BfsShortestReachTest {
-    private ByteArrayOutputStream outputStream;
-    private PrintStream sysOutStream;
+    private SysOutCapture sysOutCapture;
     
     @Before
     public void setUp() {
-        // Create a stream to hold the output
-        outputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(outputStream);
-        // IMPORTANT: Save the sysOutStream System.out! -- need to reset to this stream in teardown
-        sysOutStream = System.out;
-        System.setOut(ps);   // Tell Java to use your special stream
+        sysOutCapture = new SysOutCapture();
     }
     
     @After
-    public void tearDown() {
-        resetSysOut();
+    public void tearDown() throws Exception {
+        sysOutCapture.close();
     }
 
     @Test
@@ -41,15 +36,14 @@ public class BfsShortestReachTest {
             throw new IllegalStateException("Test input data file is missing?");
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        URL outputUrl = classLoader.getResource("BfsShortestReach_BigTestOutput_query1.data");
+                URL outputUrl = classLoader.getResource("BfsShortestReach_BigTestOutput_query1.data");
         String expected;
         if (outputUrl != null)
             expected = new String(Files.readAllBytes(Paths.get(outputUrl.toURI())));
         else
             throw new IllegalStateException("Test output data file is missing?");
 
-        Assert.assertEquals(expected, outputStream.toString());
+        Assert.assertEquals(expected, sysOutCapture.value());
     }
 
     @Test
@@ -63,15 +57,14 @@ public class BfsShortestReachTest {
             throw new IllegalStateException("Test input data file is missing?");
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        URL outputUrl = classLoader.getResource("BfsShortestReach_BigTestOutput.data");
+                URL outputUrl = classLoader.getResource("BfsShortestReach_BigTestOutput.data");
         String expected;
         if (outputUrl != null)
             expected = new String(Files.readAllBytes(Paths.get(outputUrl.toURI())));
         else
             throw new IllegalStateException("Test output data file is missing?");
 
-        Assert.assertEquals(expected, outputStream.toString());
+        Assert.assertEquals(expected, sysOutCapture.value());
     }
 
     @Test
@@ -90,9 +83,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-
-        Assert.assertEquals("18 6 6 18 12 12", outputStream.toString());
+        
+        Assert.assertEquals("18 6 6 18 12 12", sysOutCapture.value());
     }
     @Test
     public void oneNode() throws Exception {
@@ -103,9 +95,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        // Note: don't print anything if searching from start node to start node.
-        Assert.assertEquals("", outputStream.toString());
+                // Note: don't print anything if searching from start node to start node.
+        Assert.assertEquals("", sysOutCapture.value());
     }
 
     @Test
@@ -117,9 +108,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        // Note: don't print anything if searching from start node to start node.
-        Assert.assertEquals("-1", outputStream.toString());
+                // Note: don't print anything if searching from start node to start node.
+        Assert.assertEquals("-1", sysOutCapture.value());
     }
 
     @Test
@@ -133,9 +123,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        
-        Assert.assertEquals("6", outputStream.toString());
+                
+        Assert.assertEquals("6", sysOutCapture.value());
     }
 
 
@@ -151,9 +140,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        // Note: don't print anything if searching from start node to start node.
-        Assert.assertEquals("6 12 18", outputStream.toString());
+                // Note: don't print anything if searching from start node to start node.
+        Assert.assertEquals("6 12 18", sysOutCapture.value());
     }
 
     // This is the "run code" test case for the problem.  Distance from one node to another, and a disconnected node.
@@ -171,9 +159,8 @@ public class BfsShortestReachTest {
 
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        Assert.assertEquals("6 6 -1\r\n" +
-                            "-1 6", outputStream.toString());
+                Assert.assertEquals("6 6 -1\r\n" +
+                            "-1 6", sysOutCapture.value());
     }
     
     // Two paths to 5, one shorter.  Also, the second query from the first case, just to make sure that still works.
@@ -193,15 +180,8 @@ public class BfsShortestReachTest {
                 "2 ";
         BfsShortestReach.main(args);
 
-        resetSysOut();
-        Assert.assertEquals("6 6 12 12 -1 -1\r\n" +
-                            "-1 6", outputStream.toString());
+                Assert.assertEquals("6 6 12 12 -1 -1\r\n" +
+                            "-1 6", sysOutCapture.value());
     }
     
-    private void resetSysOut() {
-        // Put things back
-        System.out.flush();
-        System.setOut(sysOutStream);
-    }
-
 }

@@ -1,27 +1,22 @@
 package org.haughki.codeLibrary.programmingProblems.arraysAndStrings;
 
-import sun.plugin.dom.exception.InvalidStateException;
 
 /*
+Note:  this is an old version of this problem, and doesn't handle the whitespace issue (needed for the leetcode one).  
+For the leetcode version, see ReverseStringII.
+
 Take a string in the form of "who are you sir" and reverse the words so that it reads
-"sir you are who".  The first solution is to split and walk the resulting str array backwards.
+"sir you are who".  
+
 Then the problem gets harder:  can you do it in place, with at most one "temp" char variable?
-The solution is to convert the str to a char[], and then walk the entire string...
+
+Solution:  The first solution is to split and walk the resulting str array backwards.
+For the second, the solution is to convert the str to a char[], and then walk the entire string...
  */
 public class ReverseString {
 
     public static void main(String[] args) {
-        String s = "hello";
-        char[] chars = s.toCharArray();
-        int i = 0, j = chars.length - 1;
-        char temp;
-        while(i < j) {
-            temp = chars[i];
-            chars[i] = chars[j];
-            chars[j] = temp;
-            i++; j--;
-        }
-        System.out.println(String.valueOf(chars));
+        /*SEE TEST CASES*/
     }
     
     public String reverseWords(String str) {

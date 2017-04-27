@@ -8,6 +8,17 @@ public class ListNode {
     public ListNode next;
     public ListNode(int x) {
         val = x;
-        next = null;
+    }
+    
+    public static ListNode buildList(int... vals) {
+        if (vals.length < 1)
+            return null;
+        ListNode start = new ListNode(vals[0]);
+        ListNode curr = start;
+        for (int i = 1; i < vals.length; i++) {
+            curr.next = new ListNode(vals[i]);
+            curr = curr.next;
+        }
+        return start;
     }
 }
