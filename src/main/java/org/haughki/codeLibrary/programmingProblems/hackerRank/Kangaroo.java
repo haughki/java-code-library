@@ -1,13 +1,11 @@
 package org.haughki.codeLibrary.programmingProblems.hackerRank;
 
 import java.util.Scanner;
-
 import org.haughki.codeLibrary.aacommon.SysOutCapture;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 
 public class Kangaroo {
     private SysOutCapture sysOutCapture;

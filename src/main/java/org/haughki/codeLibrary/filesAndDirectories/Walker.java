@@ -1,19 +1,19 @@
 package org.haughki.codeLibrary.filesAndDirectories;
 
+import org.haughki.codeLibrary.aacommon.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Walker {
-    public static void main(String[] args) {
-        List<File> files = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        //List<File> files = new ArrayList<>();
         //listf("D:\\Projects", files);
-        getFileNames(files, Paths.get("D:\\Projects"));
+        List<File> files = FileUtils.getFileNames(Paths.get("D:\\Projects"));
         files.forEach(System.out::println);
     }
     private static void listf(String directoryName, List<File> files) {
@@ -30,17 +30,4 @@ public class Walker {
         }
     }
 
-    private static void getFileNames(List<File> fileNames, Path dir) {
-        try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
-            for (Path path : stream) {
-                if(path.toFile().isDirectory()) {
-                    getFileNames(fileNames, path);
-                } else {
-                    fileNames.add(path.toFile());
-                }
-            }
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

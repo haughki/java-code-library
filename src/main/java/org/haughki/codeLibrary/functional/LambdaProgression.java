@@ -15,7 +15,7 @@ from a for-loop approach, to a functional approach.
  */
 public class LambdaProgression {
     public static void main(String[] args) {
-
+        
         List<Person> roster = new ArrayList<>(Arrays.asList(
                 new Person("Jacob", (byte) 45, Person.Sex.MALE, "cobbletoes@gorflingle.org"),
                 new Person("Sugey", (byte) 22, Person.Sex.MALE, "sugey@gorflingle.org"),
