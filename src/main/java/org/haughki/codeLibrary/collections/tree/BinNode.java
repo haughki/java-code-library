@@ -1,13 +1,13 @@
 package org.haughki.codeLibrary.collections.tree;
 
-class BNode {
-    BNode(){}
-    BNode(int val) {
+class BinNode {
+    BinNode(){}
+    BinNode(int val) {
         this.val = val;
     }
     int val;
-    BNode left;
-    BNode right;
+    BinNode left;
+    BinNode right;
     int depth;
     
     int getDepth() { return depth; } 

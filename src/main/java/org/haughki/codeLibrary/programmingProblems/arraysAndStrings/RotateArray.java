@@ -52,8 +52,8 @@ class Rotate {
     with a bit vector.  If you hit a number you've already moved, search for a new starting point.  Everything in place, 
     one temp var.  Use bit vector to track when you've moved a number.
      */
-    public void rotateOneByOne(int[] nums, int k) {
-//    public void rotate(int[] nums, int k) {
+    //public void rotateOneByOne(int[] nums, int k) {
+    public void rotate(int[] nums, int k) {
         k = k % nums.length;
         if (k == 0)
             return;
@@ -102,7 +102,7 @@ class Rotate {
     "non-k" numbers in place, while storing k.  Then copies k back to nums.
      */
 //    public void rotateTempK(int[] nums, int k) {
-    public void rotate(int[] nums, int k) {
+    public void rotate_(int[] nums, int k) {
         k = k % nums.length;
 
         int[] temp = new int[k];

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BTreePrinter {
+public class BinTreePrinter {
 
     public static <T extends Comparable<?>> void printNode(Node<T> root) {
-        int maxLevel = BTreePrinter.maxLevel(root);
+        int maxLevel = BinTreePrinter.maxLevel(root);
 
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
     }
 
     private static <T extends Comparable<?>> void printNodeInternal(List<Node<T>> nodes, int level, int maxLevel) {
-        if (nodes.isEmpty() || BTreePrinter.isAllElementsNull(nodes))
+        if (nodes.isEmpty() || BinTreePrinter.isAllElementsNull(nodes))
             return;
 
         int floor = maxLevel - level;
@@ -21,7 +21,7 @@ public class BTreePrinter {
         int firstSpaces = (int) Math.pow(2, (floor)) - 1;
         int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
 
-        BTreePrinter.printWhitespaces(firstSpaces);
+        BinTreePrinter.printWhitespaces(firstSpaces);
 
         List<Node<T>> newNodes = new ArrayList<>();
         for (Node<T> node : nodes) {
@@ -35,31 +35,31 @@ public class BTreePrinter {
                 System.out.print(" ");
             }
 
-            BTreePrinter.printWhitespaces(betweenSpaces);
+            BinTreePrinter.printWhitespaces(betweenSpaces);
         }
         System.out.println("");
 
         for (int i = 1; i <= endgeLines; i++) {
             for (int j = 0; j < nodes.size(); j++) {
-                BTreePrinter.printWhitespaces(firstSpaces - i);
+                BinTreePrinter.printWhitespaces(firstSpaces - i);
                 if (nodes.get(j) == null) {
-                    BTreePrinter.printWhitespaces(endgeLines + endgeLines + i + 1);
+                    BinTreePrinter.printWhitespaces(endgeLines + endgeLines + i + 1);
                     continue;
                 }
 
                 if (nodes.get(j).left() != null)
                     System.out.print("/");
                 else
-                    BTreePrinter.printWhitespaces(1);
+                    BinTreePrinter.printWhitespaces(1);
 
-                BTreePrinter.printWhitespaces(i + i - 1);
+                BinTreePrinter.printWhitespaces(i + i - 1);
 
                 if (nodes.get(j).right() != null)
                     System.out.print("\\");
                 else
-                    BTreePrinter.printWhitespaces(1);
+                    BinTreePrinter.printWhitespaces(1);
 
-                BTreePrinter.printWhitespaces(endgeLines + endgeLines - i);
+                BinTreePrinter.printWhitespaces(endgeLines + endgeLines - i);
             }
 
             System.out.println("");
@@ -77,7 +77,7 @@ public class BTreePrinter {
         if (node == null)
             return 0;
 
-        return Math.max(BTreePrinter.maxLevel(node.left()), BTreePrinter.maxLevel(node.right())) + 1;
+        return Math.max(BinTreePrinter.maxLevel(node.left()), BinTreePrinter.maxLevel(node.right())) + 1;
     }
 
     private static <T> boolean isAllElementsNull(List<T> list) {

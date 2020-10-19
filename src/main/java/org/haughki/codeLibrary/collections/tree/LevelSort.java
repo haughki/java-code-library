@@ -8,8 +8,8 @@ public class LevelSort {
 
     int depth = 0;
     int maxDepth = 0;
-    List<BNode> nodes = new ArrayList<>();
-    void buildList(BNode node) {
+    List<BinNode> nodes = new ArrayList<>();
+    void buildList(BinNode node) {
         depth++;
         if (depth > maxDepth)
             maxDepth = depth;
@@ -19,7 +19,7 @@ public class LevelSort {
             nodes.add(node);
             buildList(node.right);
         } else {
-            BNode nullNode = new BNode(-1);
+            BinNode nullNode = new BinNode(-1);
             nullNode.depth = depth;
             nodes.add(nullNode);
         }
@@ -37,9 +37,9 @@ public class LevelSort {
         //System.out.println(bottomNodes);
 
         //nodes.stream().sorted(Comparator.comparing(BNode::getDepth))
-        nodes.sort(Comparator.comparing(BNode::getDepth));
+        nodes.sort(Comparator.comparing(BinNode::getDepth));
         
-        for (BNode node: nodes) {
+        for (BinNode node: nodes) {
             if (node.depth == printDepth) {
                 System.out.print(toPrint(node.val, bottomWidth, numInRow));
             }

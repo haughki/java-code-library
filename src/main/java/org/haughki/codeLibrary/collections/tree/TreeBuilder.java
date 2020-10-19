@@ -3,7 +3,7 @@ package org.haughki.codeLibrary.collections.tree;
 import java.util.Arrays;
 
 public class TreeBuilder {
-    void buildTree(BNode node, final int[] fromArray) {
+    void buildTree(BinNode node, final int[] fromArray) {
         if (node == null)
             throw new IllegalArgumentException("Null node.");
         if (fromArray.length == 1) {
@@ -13,12 +13,12 @@ public class TreeBuilder {
         int middle = getMiddle(fromArray);
         node.val = fromArray[middle];
         int[] leftArray = Arrays.copyOfRange(fromArray, 0, middle);
-        node.left = new BNode();
+        node.left = new BinNode();
         buildTree(node.left, leftArray);
         int[] rightArray = Arrays.copyOfRange(fromArray, middle + 1, fromArray.length);
         if (rightArray.length < 1)
             return;
-        node.right = new BNode();
+        node.right = new BinNode();
         buildTree(node.right, rightArray);
     }
 

@@ -1,10 +1,8 @@
 package org.haughki.codeLibrary.collections.tree;
 
 
-import javax.naming.OperationNotSupportedException;
-
 // from: http://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram
-public class BTreePrinterTest {
+public class BinTreePrinterTest {
 
     private static GenericNode<Integer> test1() {
         GenericNode<Integer> root = new GenericNode<>(2);
@@ -71,7 +69,7 @@ public class BTreePrinterTest {
 
     public static void main(String[] args) {
 
-        BTreePrinter.printNode(test1());
+        BinTreePrinter.printNode(test1());
         //BTreePrinter.printNode(test2());
 
     }

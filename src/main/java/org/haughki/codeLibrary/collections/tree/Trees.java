@@ -6,7 +6,7 @@ public class Trees {
     
 
     static int level = 0;
-    static void inOrderTraversal(BNode node) {
+    static void inOrderTraversal(BinNode node) {
         level++;
         if (node != null) {
             inOrderTraversal(node.left);
@@ -17,7 +17,7 @@ public class Trees {
         level--;
     }
 
-    static void inOrderTraversalDescending(BNode node) {
+    static void inOrderTraversalDescending(BinNode node) {
         if (node != null) {
             inOrderTraversalDescending(node.right);
             node.visit();
@@ -25,7 +25,7 @@ public class Trees {
         }
     }
 
-    static void preOrderTraversal(BNode node) {
+    static void preOrderTraversal(BinNode node) {
         if (node != null) {
             node.visit();
             preOrderTraversal(node.left);
@@ -33,7 +33,7 @@ public class Trees {
         }
     }
 
-    static void postOrderTraversal(BNode node) {
+    static void postOrderTraversal(BinNode node) {
         if (node != null) {
             postOrderTraversal(node.left);
             postOrderTraversal(node.right);

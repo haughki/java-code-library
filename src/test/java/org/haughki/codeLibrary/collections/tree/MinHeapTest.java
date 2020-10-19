@@ -1,6 +1,5 @@
 package org.haughki.codeLibrary.collections.tree;
 
-import org.haughki.codeLibrary.collections.tree.MinHeap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -146,7 +145,7 @@ public class MinHeapTest {
         //minHeap.printTree();
         Node<Integer> mh = new MinHeapNode<>(1, minHeap);
         
-        BTreePrinter.printNode(mh);
+        BinTreePrinter.printNode(mh);
     }
 
 }

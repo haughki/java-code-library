@@ -16,9 +16,7 @@ public class Kangaroo {
     }
 
     @After
-    public void tearDown() throws Exception {
-        sysOutCapture.close();
-    }
+    public void tearDown() throws Exception { sysOutCapture.close(); }
 
 
     @Test

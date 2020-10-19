@@ -18,7 +18,7 @@ public class Pecs {
         ));
         producer(animals);
 
-        List<Whale> whales = new ArrayList<Whale>(Arrays.asList(
+        List<Whale> whales = new ArrayList<>(Arrays.asList(
                 new Whale(),
                 new HumpbackWhale()
         ));
@@ -58,12 +58,15 @@ public class Pecs {
         animals.forEach(Animal::Live);
     }
     
-    // This method can take a Collection typed to Whale or any parent (super) of Whale. Because the possible type of 
-    // the Collection is variable, the method body has to assume that it might (essentially, will) get a 
-    // Collection of Whales. A Collection of Whales can only add Whales and subtypes of Whale (polymorphism), and 
-    // so, that’s the only thing you can add to the “existers” parameter.
+    // This method can take a Collection typed to Whale or any parent (super) of Whale. Whale is the "lowest" possible
+    // type that the Collection can be, and so the method body has to assume that, "at worst", it could get a 
+    // Collection of Whales; i.e., the method body has to act as if the passed Collection is Collection<Whale>. 
+    // A Collection of Whales can only add Whales and subtypes of Whale (polymorphism), and 
+    // so, that’s the only thing you can add to the “existers” parameter. A Collection typed to Whale or any parent
+    // of Whale will always be able to accept Whales and its sub-types -- this is what "allows" the passed Collection's
+    // generic type to be <? super Whale>.
     public static void consumer(Collection<? super Whale> existers) {
-        // existers.add(new AquaticMammal()); //  -- AquaticMammal not a Whale or sub of Whale
+        //existers.add(new AquaticMammal()); // ERROR -- AquaticMammal not a Whale or sub of Whale (".add cannot be applied to AquaticMammal")
         existers.add(new Whale());
         existers.add(new HumpbackWhale());
     }

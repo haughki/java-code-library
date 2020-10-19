@@ -5,11 +5,15 @@ import java.util.Arrays;
 
 /*
 My play impl of a bit vector, just to understand it better.
+
+This bit vector is an array of ints. Each index of the array (an int) is a 'bucket'. Each bucket is an int, an you can use all
+the bits of the int (32) to store information; each bit can be 0 or 1. So, the structure can hold true/false information for
+32 * arrayLength things.
  */
 public class BitVector {
     private final int length;
     private final int[] vector;
-    private final static int BUCKET_SIZE = 32;
+    private final static int BUCKET_SIZE = 32;  // number of bits in each bucket
     
     public BitVector(int length) {
         this.length = length;
@@ -32,7 +36,7 @@ public class BitVector {
     }
     
     public boolean get(int key) {
-        int bucket = key / BUCKET_SIZE;
+        int bucket = key / BUCKET_SIZE;  // rounds down. e.g., Key 33 would go into bucket 1.
         if (bucket >= vector.length)
             throw new IllegalArgumentException("Bad key: " + key);
         int index = key % BUCKET_SIZE;
