@@ -9,8 +9,11 @@ public class MinHeap {
     private int last;
 
     public MinHeap() {
+        // A pointer to the current 'end' value in the array. If items are removed from the array after they've been
+        // added, there will be meaningless values at the end of the array, so we need to know where the right-most meaningful
+        // value is.
         last = 0;
-        a.add(Integer.MIN_VALUE);
+        a.add(Integer.MIN_VALUE);  // dummy value. a[0] is never used.
     }
     
     public boolean heapEmpty() {
@@ -26,7 +29,7 @@ public class MinHeap {
     
     public void insert(Integer val) {
         last++;
-        if (last < a.size())
+        if (last < a.size())  // if elements of the array have been removed, there will be 'extra' space
             a.set(last, val);
         else
             a.add(val);
@@ -34,13 +37,14 @@ public class MinHeap {
         upHeapBubble();
     }
 
-    // Happens after insert(). Insert puts the new value in the last position in the heap (last spot in array).
+    // Happens after insert(). Insert puts the new value in the last position in the heap (last open spot in array:
+    // may not be the actual last _index_ of the array if items have been removed).
     // Compare this new value with parent, swapping if the new value is less.  Continue up the tree like this until
     // you find the proper location of the newly added value.
     private void upHeapBubble(){
         int index = last;
         while (index > 1){
-            int parent = index / 2;
+            int parent = index / 2;  // O(log(n))
             //break if the index is greater or equal to the parent
             if (a.get(index) >= a.get(parent))
                 break;
@@ -49,8 +53,9 @@ public class MinHeap {
         }
     }
     
-    // Happens after removeMin().  That method moved the last item in the array to the first.  Now, move this value
-    // (was the last value) down through the tree, swapping when it is greater than either of the children; and, always
+    // Happens after removeMin() (or delete()). For removeMin(), e.g., things always start at index 1. downHeapBubble then
+    // moves the last item in the array to the first. Then, moves the new "first value" (was the last value)
+    // down through the tree, swapping when it is greater than either of the children; and, always
     // swapping the the min of the two children.
     private void downHeapBubble(int index) {
         a.set(index, a.get(last));
@@ -68,7 +73,7 @@ public class MinHeap {
             }
             if (a.get(index) <= a.get(child))
                 break;
-            swap(index,child);
+            swap(index, child);
             index = child;
         }
     }
@@ -92,7 +97,7 @@ public class MinHeap {
             throw new IllegalStateException("The heap is empty.");
         else {
             int foundIndex = -1;
-            for (int i = 1; i <= last; i++) {
+            for (int i = 1; i <= last; i++) {  // O(n)
                 if (a.get(i).equals(val)) {
                     foundIndex = i;
                     break;
