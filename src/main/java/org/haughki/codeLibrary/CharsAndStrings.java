@@ -15,21 +15,21 @@ public class CharsAndStrings {
                 System.out.print(new String(Character.toChars(cp))));
         System.out.print("\r\n");
         String supplementary = "Some Supplementary: 𠜎𠜱𠝹𠱓";
-        supplementary.codePoints().forEach(cp -> 
+        supplementary.codePoints().forEach(cp ->
                 System.out.print(new String(Character.toChars(cp))));
         System.out.print("\r\n");
-        
+
         System.out.println();
         // the int value of a char is the Unicode code point:
         char c = '不';
         System.out.println("Codepoint for bu: " + (int)c);
         System.out.println("From codepoint: " + (char)19981);
         System.out.println();
-        
+
         // STRING TO BYTES TO STRING:  character encodings
         String convertMe = "不 some text";
         System.out.println("Default Encoding: " + Charset.defaultCharset());
-        
+
         byte[] defaultBytes = convertMe.getBytes();
         System.out.println("No Encoding Specified: " + new String(defaultBytes));
         System.out.println("Reconverted: " + new String (defaultBytes, "UTF-8"));
@@ -62,7 +62,7 @@ public class CharsAndStrings {
         System.out.println("Codepoint at 0: " + aString.codePointAt(0));
         System.out.println("Don't count whitespace: " + aString.codePointCount(0, 2));
         System.out.println(aString.charAt(aString.offsetByCodePoints(0, 3)));
-        
+
         // String, StringBuilder
         System.out.println();
         String myString = "my nice little string";

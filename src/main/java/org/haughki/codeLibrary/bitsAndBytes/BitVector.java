@@ -28,7 +28,7 @@ public class BitVector {
         if (bucket >= vector.length)
             throw new IllegalArgumentException("Bad key: " + key);
         int index = key % BUCKET_SIZE;
-        int mask = 1 << index;
+        int mask = 1 << index;  // shift the binary number '1' left by the number of the index
         if (value)
             vector[bucket] |= mask;
         else
